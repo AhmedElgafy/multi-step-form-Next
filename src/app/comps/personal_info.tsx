@@ -8,32 +8,25 @@ export default function PersonalInfo() {
   };
   return (
     <>
-      <div className="flex flex-col bg-White w-96  p-5  my-auto border-solid border-2 gap-3">
-        <h1 className="text-2xl font-bold">{data.title}</h1>
-        <p className="text-Cool-gray">{data.description}</p>
-        <div>
-          <label htmlFor="Name" className="block text-sm">
-            Name
-          </label>
-          <input type="text" name="Name" id="" placeholder={data.nameInput} />
-        </div>
-        <div>
-          <label htmlFor="EmailAddress" className="block">
-            Email Address
-          </label>
-          <input
-            type="text"
-            name="Name"
-            id=""
-            placeholder={data.emailAddress}
-          />
-        </div>
-        <div>
-          <label htmlFor="PhoneNumber" className="block">
-            Email Address
-          </label>
-          <input type="text" name="Name" id="" placeholder={data.phoneInput} />
-        </div>
+      <h1 className="title">{data.title}</h1>
+      <p className="disc">{data.description}</p>
+      <div>
+        <label htmlFor="Name" className="block ">
+          Name
+        </label>
+        <input type="text" name="Name" id="" placeholder={data.nameInput} />
+      </div>
+      <div>
+        <label htmlFor="EmailAddress" className="block">
+          Email Address
+        </label>
+        <input type="text" name="Name" id="" placeholder={data.emailAddress} />
+      </div>
+      <div>
+        <label htmlFor="PhoneNumber" className="block">
+          Email Address
+        </label>
+        <input type="text" name="Name" id="" placeholder={data.phoneInput} />
       </div>
     </>
   );

@@ -7,3 +7,18 @@ body {
   background: url("/bg-sidebar-mobile.svg") no-repeat fixed;
   background-size: 100%;
 }
+input[type="text"] {
+  border: solid 1px hsl(229, 24%, 87%);
+  width: 100%;
+  padding: 1rem;
+  border-radius: 3px;
+}
+.circles {
+  @apply border font-bold  hover:bg-Pastel-blue hover:text-Marine-blue cursor-pointer hover:border-Light-blue rounded-[100%] w-10 h-10 flex items-center justify-center;
+}
+.title {
+  @apply text-3xl font-bold text-Marine-blue;
+}
+.disc {
+  @apply text-Cool-gray text-lg;
+}
