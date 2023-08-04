@@ -1,31 +1,13 @@
 "use clint";
-import { useEffect, useState } from "react";
-interface Map {
-  [key: number]: boolean;
-}
-const AddOns = () => {
-  const [selected, setSelected]: any = useState({
-    1: false,
-    2: false,
-    3: false,
-  });
+import { useContext, useEffect, useState } from "react";
+import useGlobalHook from "../hooks/globalHook";
+import { addOns } from "../compsData/compsData";
+import { SomeContext } from "../page";
 
-  const data = {
-    title: "Pick add-ons",
-    disc: "Add-ons help enhance your gaming experience.",
-    checkImg: "./icon-checkmark.svg",
-    ons: [
-      ["Online service", "Access to multiplayer games", "+$1/mo", "+$10/yr", 1],
-      ["Larger storage", "Extra 1TB of cloud save", "+$2/mo", "+$20/yr", 2],
-      [
-        "Customizable profile",
-        "Custom theme on your profile",
-        "+$2/mo",
-        "+$20/yr",
-        3,
-      ],
-    ],
-  };
+const data = addOns;
+const AddOns = () => {
+  const { selected, setSelected, planPeriod } = useContext(SomeContext);
+
   const handelClickOns = (index: number | any) => {
     selected[index.toString()]
       ? (selected[index.toString()] = false)
@@ -68,7 +50,9 @@ const AddOns = () => {
                 <p className="text-sm">{ele[1]}</p>
               </div>
             </div>
-            <p className="text-Purplish-blue">{ele[2]}</p>
+            <p className="text-Purplish-blue">
+              {planPeriod == "m" ? ele[2] : ele[3]}
+            </p>
           </div>
         </>
       ))}

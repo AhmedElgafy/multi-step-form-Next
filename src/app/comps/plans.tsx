@@ -1,22 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import useGlobalHook from "../hooks/globalHook";
+import { plans } from "../compsData/compsData";
+import { SomeContext } from "../page";
+import { useContext } from "react";
+
+const data = plans;
 export default function Plans() {
-  const [selected, setSelected]: any = useState({
-    1: false,
-    2: false,
-    3: false,
-  });
-  const data = {
-    title: "Select your plan",
-    disc: "You have the option of monthly or yearly billing",
-    option: [
-      ["Arcade", "$9/mo", "$90/yr", "./icon-arcade.svg", "1"],
-      ["Advanced", "$12/mo", "$120/yr", "./icon-advanced.svg", "2"],
-      ["pro", "$15/mo", "$120/yr", "./icon-pro.svg", "3"],
-    ],
-  };
-  const [planPeriod, setPlanPeriod] = useState("m");
-  const [selectedPlan, setSelectedPlan] = useState("1");
+  const { planPeriod, setPlanPeriod, selectedPlan, setSelectedPlan }: any =
+    useContext(SomeContext);
+
   const handelClickOns = (index: number | any) => {
     let pos: string = index.toString();
 
