@@ -17,21 +17,24 @@ export default function Plans() {
   };
   return (
     <>
-      <h1 className="title">{data.title}</h1>
+      <h1 key={crypto.randomUUID()} className="title">
+        {data.title}
+      </h1>
       <p className=" disc">{data.disc}</p>
       {data.option.map((ele) => (
         <>
           <div
+            key={crypto.randomUUID()}
             className={`border-2 cursor-pointer ${
               selectedPlan == ele[4]
                 ? "border-Purplish-blue bg-Light-blue bg-opacity-30"
                 : "border-Cool-gray"
             } flex rounded-lg gap-4 p-3 align-top border-Cool-gray`}
-            key={ele[4] + 50}
             onClick={(e) => handelClickOns(ele[4])}
           >
             <img
               className={`block ${planPeriod == "y" ? "self-start" : null}`}
+              key={ele[4]}
               src={ele[3]}
               alt=""
             />

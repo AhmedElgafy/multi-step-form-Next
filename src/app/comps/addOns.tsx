@@ -23,7 +23,7 @@ const AddOns = () => {
       {data.ons.map((ele) => (
         <>
           <div
-            key={ele[4]}
+            key={crypto.randomUUID()}
             onClick={(e) => handelClickOns(ele[4])}
             className={`border-2 ${
               selected[ele[4]]

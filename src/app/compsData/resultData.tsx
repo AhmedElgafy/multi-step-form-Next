@@ -17,18 +17,18 @@ export default function useResultData() {
   ];
   var totalMon = 0;
   var totalYear = 0;
-  console.log(selectedOns);
+  // console.log(selectedOns);
   for (let x in selectedOns) {
     // totalMon = totalMon + Number(x[2].match(/\d+/g));
     // totalYear = totalYear + Number(x[2].match(/\d+/g));
-    console.log(x);
+    // console.log(x);
   }
   selectedOns.forEach((ele) => {
     totalMon = totalMon + Number(ele[1].match(/\d+/g));
     totalYear = totalYear + Number(ele[2].match(/\d+/g));
-    console.log(ele[2]);
+    // console.log(ele[2]);
   });
 
-  console.log(selectedPlan);
+  // console.log(selectedPlan);
   return { selectedOns, planPeriod, yourPlan, totalMon, totalYear };
 }

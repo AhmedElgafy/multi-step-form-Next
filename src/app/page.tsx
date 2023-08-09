@@ -1,6 +1,6 @@
 "use client";
 import PersonalInfo from "./comps/personal_info";
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import Plans from "./comps/plans";
 import AddOns from "./comps/addOns";
 import FinishingUp from "./comps/finishingUp";
@@ -14,11 +14,11 @@ interface CirclesType {
 
 export const SomeContext = createContext<any>({});
 const Circles = ({ num, selectedBtn, setSelectedBtn }: CirclesType) => {
+  // console.log(keys);
   return (
     <>
       <p
-        key={num}
-        onClick={(e) => setSelectedBtn(num)}
+        onClick={() => setSelectedBtn(num)}
         className={`circles ${
           selectedBtn == num
             ? "bg-Light-blue text-Marine-blue border-Light-gray"
@@ -36,19 +36,26 @@ export default function Home() {
   const Routes = () => {
     switch (selectedBtn) {
       case 2:
-        return <Plans />;
+        return <Plans key={crypto.randomUUID()} />;
 
       case 3:
-        return <AddOns />;
+        return <AddOns key={crypto.randomUUID()} />;
       case 4:
-        return <FinishingUp />;
+        return (
+          <FinishingUp
+            key={crypto.randomUUID()}
+            selectedBtn={selectedBtn}
+            setSelectedBtn={setSelectedBtn}
+          />
+        );
       case 5:
-        return <ThankYou />;
+        return <ThankYou key={crypto.randomUUID()} />;
       default:
-        return <PersonalInfo />;
+        return <PersonalInfo key={crypto.randomUUID()} />;
     }
   };
-  // console.log(selectedBtn);
+  // console.log(crypto.randomUUID());
+
   return (
     <>
       <main className="relative font-ubuntu  flex flex-col  mt-6 gap-4 justify-center items-center">
@@ -56,7 +63,7 @@ export default function Home() {
           <div className=" flex gap-5 my-5 text-White items-center justify-center">
             {[1, 2, 3, 4].map((ele) => (
               <Circles
-                key={ele}
+                key={crypto.randomUUID()}
                 selectedBtn={selectedBtn}
                 setSelectedBtn={setSelectedBtn}
                 num={ele}
@@ -66,33 +73,38 @@ export default function Home() {
           <div className="flex flex-col shadow-lg bg-White w-96 py-12 p-6  gap-3 rounded-lg">
             {<Routes />}
           </div>
-
-          <div
-            className={`fixed bottom-0 bg-Light-gray w-full flex ${
-              selectedBtn != 1 ? "justify-between" : "justify-end"
-            } py-4 content-center px-10`}
-          >
-            {selectedBtn != 1 ? (
-              <h1
-                onClick={() => setSelectedBtn((e) => (e = (e - 1) % 5))}
-                className="text-Cool-gray my-auto cursor-pointer font-bold"
-              >
-                Go Back
-              </h1>
-            ) : null}
-            <h1
-              onClick={() =>
-                setSelectedBtn((e) => {
-                  e = (e + 1) % 6;
-                  if (e == 0) e = 1;
-                  return e;
-                })
-              }
-              className="p-3 bg-Marine-blue text-White cursor-pointer font-bold rounded-lg"
+          {/* next ------- goback comp */}
+          {selectedBtn != 5 && (
+            <div
+              className={`fixed bottom-0 bg-Light-gray w-full flex ${
+                selectedBtn != 1 ? "justify-between" : "justify-end"
+              } py-4 content-center px-10`}
             >
-              Next Step
-            </h1>
-          </div>
+              {selectedBtn != 1 ? (
+                <h1
+                  type="submit"
+                  onClick={() =>
+                    setSelectedBtn((e: number) => (e = (e - 1) % 5))
+                  }
+                  className="text-Cool-gray my-auto cursor-pointer font-bold"
+                >
+                  Go Back
+                </h1>
+              ) : null}
+              <h1
+                onClick={() =>
+                  setSelectedBtn((e: number) => {
+                    e = (e + 1) % 6;
+                    if (e == 0) e = 1;
+                    return e;
+                  })
+                }
+                className="p-3 bg-Marine-blue text-White cursor-pointer font-bold rounded-lg"
+              >
+                {selectedBtn == 4 ? "Confirm" : "Next Step"}
+              </h1>
+            </div>
+          )}
         </SomeContext.Provider>
       </main>
     </>

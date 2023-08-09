@@ -11,10 +11,13 @@ export default function useGlobalHook() {
     2: false,
     3: false,
   });
-  const [selectedBtn, setSelectedBtn] = useState<any>(1);
+  const [isPattern, setIsPattern] = useState<undefined | boolean>(undefined);
+  const [selectedBtn, setSelectedBtn] = useState(1);
 
   return {
     selectedBtn,
+    isPattern,
+    setIsPattern,
     setSelectedBtn,
     selected,
     setSelected,

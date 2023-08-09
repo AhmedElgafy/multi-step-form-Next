@@ -3,12 +3,15 @@
 import { useContext } from "react";
 import { SomeContext } from "../page";
 import useResultData from "../compsData/resultData";
-
-const FinishingUp = () => {
+import useGlobalHook from "../hooks/globalHook";
+type PropsType = {
+  selectedBtn: number;
+  setSelectedBtn(e: number): void;
+};
+const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
   const { selectedOns, planPeriod, yourPlan, totalMon, totalYear } =
     useResultData();
-  // const { selectedPlan } = useContext(SomeContext);
-  console.log(Number(yourPlan[2].match(/\d+/g)));
+
   return (
     <>
       <h1 className="title">Finishing up</h1>
@@ -21,7 +24,15 @@ const FinishingUp = () => {
             <h1 className="font-bold text-Marine-blue">
               {yourPlan[0]} (Monthly)
             </h1>
-            <p className="underline text-Cool-gray">Change</p>
+            <p
+              onClick={(e) => {
+                setSelectedBtn(2);
+                console.log("from finishing: " + selectedBtn);
+              }}
+              className="underline cursor-pointer text-Cool-gray"
+            >
+              Change
+            </p>
           </div>
           <p className="font-bold text-Marine-blue">
             {planPeriod == "m" ? yourPlan[1] : yourPlan[2]}
@@ -29,7 +40,10 @@ const FinishingUp = () => {
         </div>
         {selectedOns &&
           selectedOns.map((ele) => (
-            <div className="flex items-center justify-between">
+            <div
+              key={crypto.randomUUID()}
+              className="flex items-center justify-between"
+            >
               <p className="text-Cool-gray">{ele[0]}</p>
               <p className="text-Marine-blue">
                 {planPeriod == "m" ? ele[1] : ele[2]}
