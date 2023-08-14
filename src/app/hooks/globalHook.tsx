@@ -11,7 +11,12 @@ export default function useGlobalHook() {
     2: false,
     3: false,
   });
-  const [isPattern, setIsPattern] = useState<undefined | boolean>(undefined);
+  type Pattern = { name: boolean; email: boolean; phoneNum: boolean };
+  const [isPattern, setIsPattern] = useState<Pattern>({
+    name: false,
+    email: false,
+    phoneNum: false,
+  });
   const [selectedBtn, setSelectedBtn] = useState(1);
 
   return {

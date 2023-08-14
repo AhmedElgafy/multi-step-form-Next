@@ -6,6 +6,8 @@ import AddOns from "./comps/addOns";
 import FinishingUp from "./comps/finishingUp";
 import ThankYou from "./comps/thankYou";
 import useGlobalHook from "./hooks/globalHook";
+// import "./global.css";
+
 interface CirclesType {
   num: number;
   selectedBtn: number;
@@ -33,7 +35,7 @@ const Circles = ({ num, selectedBtn, setSelectedBtn }: CirclesType) => {
 export default function Home() {
   const [selectedBtn, setSelectedBtn] = useState(1);
 
-  const Routes = () => {
+  const Routes = ({ validation }: any) => {
     switch (selectedBtn) {
       case 2:
         return <Plans key={crypto.randomUUID()} />;
@@ -51,16 +53,35 @@ export default function Home() {
       case 5:
         return <ThankYou key={crypto.randomUUID()} />;
       default:
-        return <PersonalInfo key={crypto.randomUUID()} />;
+        return (
+          <PersonalInfo validation={validation} key={crypto.randomUUID()} />
+        );
     }
   };
   // console.log(crypto.randomUUID());
-
+  const checkInputs = () => {};
+  const validation = {
+    name: false,
+    setName(value: boolean) {
+      this.name = value;
+    },
+    email: false,
+    setEmail(value: boolean) {
+      this.name = value;
+    },
+    phoneNum: false,
+    setPhoneNum(value: boolean) {
+      this.name = value;
+    },
+    allValidate() {
+      return this.name && this.phoneNum && this.email;
+    },
+  };
   return (
     <>
-      <main className="relative font-ubuntu  flex flex-col  mt-6 gap-4 justify-center items-center">
+      <main className="relative font-ubuntu md:mx-5 h-full flex flex-col md:flex-row  mt-6 gap-4 md:gap-0 justify-center md:items-start items-center">
         <SomeContext.Provider value={useGlobalHook()}>
-          <div className=" flex gap-5 my-5 text-White items-center justify-center">
+          <div className=" flex gap-5 my-5 md:my-0 md:flex-col md:bg-[url('/bg-sidebar-desktop.svg')] md:h-[10%] md:w-52 text-White items-center justify-center">
             {[1, 2, 3, 4].map((ele) => (
               <Circles
                 key={crypto.randomUUID()}
@@ -71,7 +92,7 @@ export default function Home() {
             ))}
           </div>
           <div className="flex flex-col shadow-lg bg-White w-96 py-12 p-6  gap-3 rounded-lg">
-            {<Routes />}
+            {<Routes validation={validation} />}
           </div>
           {/* next ------- goback comp */}
           {selectedBtn != 5 && (
@@ -82,7 +103,6 @@ export default function Home() {
             >
               {selectedBtn != 1 ? (
                 <h1
-                  type="submit"
                   onClick={() =>
                     setSelectedBtn((e: number) => (e = (e - 1) % 5))
                   }
@@ -92,13 +112,13 @@ export default function Home() {
                 </h1>
               ) : null}
               <h1
-                onClick={() =>
+                onClick={() => {
                   setSelectedBtn((e: number) => {
                     e = (e + 1) % 6;
                     if (e == 0) e = 1;
                     return e;
-                  })
-                }
+                  });
+                }}
                 className="p-3 bg-Marine-blue text-White cursor-pointer font-bold rounded-lg"
               >
                 {selectedBtn == 4 ? "Confirm" : "Next Step"}
