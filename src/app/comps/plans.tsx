@@ -21,35 +21,41 @@ export default function Plans() {
         {data.title}
       </h1>
       <p className=" disc">{data.disc}</p>
-      {data.option.map((ele) => (
-        <>
-          <div
-            key={crypto.randomUUID()}
-            className={`border-2 cursor-pointer ${
-              selectedPlan == ele[4]
-                ? "border-Purplish-blue bg-Light-blue bg-opacity-30"
-                : "border-Cool-gray"
-            } flex rounded-lg gap-4 p-3 align-top border-Cool-gray`}
-            onClick={(e) => handelClickOns(ele[4])}
-          >
-            <img
-              className={`block ${planPeriod == "y" ? "self-start" : null}`}
-              key={ele[4]}
-              src={ele[3]}
-              alt=""
-            />
-            <div>
-              <h1 className=" font-bold text-Marine-blue text-lg">{ele[0]}</h1>
-              <p className="text-Cool-gray">
-                {planPeriod == "m" ? ele[1] : ele[2]}
-              </p>
-              {planPeriod == "y" ? (
-                <p className="text-Marine-blue text-sm">2 month for free</p>
-              ) : null}
+      <div className="flex flex-col gap-3 md:flex-row md:justify-between">
+        {data.option.map((ele) => (
+          <>
+            <div
+              key={crypto.randomUUID()}
+              className={`border-2 cursor-pointer ${
+                selectedPlan == ele[4]
+                  ? "border-Purplish-blue bg-Light-blue bg-opacity-30"
+                  : "border-Cool-gray"
+              } flex rounded-lg md:flex-col md:w-[30%]  gap-4 p-3 align-top border-Cool-gray`}
+              onClick={(e) => handelClickOns(ele[4])}
+            >
+              <img
+                className={`md:w-[40%] block ${
+                  planPeriod == "y" ? "self-start" : null
+                }`}
+                key={ele[4]}
+                src={ele[3]}
+                alt=""
+              />
+              <div>
+                <h1 className=" font-bold text-Marine-blue text-lg">
+                  {ele[0]}
+                </h1>
+                <p className="text-Cool-gray">
+                  {planPeriod == "m" ? ele[1] : ele[2]}
+                </p>
+                {planPeriod == "y" ? (
+                  <p className="text-Marine-blue text-sm">2 month for free</p>
+                ) : null}
+              </div>
             </div>
-          </div>
-        </>
-      ))}
+          </>
+        ))}
+      </div>
       <div className="flex gap-6 my-5 justify-center">
         <h1
           onClick={() => setPlanPeriod("m")}

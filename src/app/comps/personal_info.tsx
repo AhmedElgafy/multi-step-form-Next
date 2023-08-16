@@ -11,21 +11,18 @@ import { SomeContext } from "../page";
 import { setConfig } from "next/config";
 const data = personalInfo;
 
-export default function PersonalInfo({ validation }: any) {
+export default function PersonalInfo({ nameRef }: any) {
   const { isPattern, setIsPattern } = useContext(SomeContext);
   // const [name, setName] = useState<string | undefined>(undefined);
   const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    validation.setEmail(pattern.test(e.target.value));
   };
   const checkPhoneNum = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-    validation.setPhoneNum(pattern.test(e.target.value));
   };
   const checkName = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /^[a-z ,.'-]+$/i;
-    validation.setName(pattern.test(e.target.value));
-    // setName(pattern.test(e.target.value));
+    nameRef.current = e.target.value;
   };
   return (
     <>
@@ -37,6 +34,7 @@ export default function PersonalInfo({ validation }: any) {
         </label>
         <input
           type="text"
+          // ref={nameRef}
           onChange={(e) => checkName(e)}
           name="Name"
           id=""
