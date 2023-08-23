@@ -30,4 +30,10 @@ const addOns = {
     ],
   ],
 };
-export { personalInfo, plans, addOns };
+const stepsDate = [
+  ["STEP 1", "YOUR INFO"],
+  ["STEP 2", "SELECT PLAN"],
+  ["STEP 3", "ADD-ONS"],
+  ["STEP 4", "SUMMARY"],
+];
+export { personalInfo, plans, addOns, stepsDate };

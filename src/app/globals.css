@@ -22,3 +22,8 @@ input[type="text"] {
 .disc {
   @apply text-Cool-gray text-lg;
 }
+@media (min-width: 768px) {
+  body {
+    background: none;
+  }
+}

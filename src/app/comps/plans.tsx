@@ -9,10 +9,8 @@ const data = plans;
 export default function Plans() {
   const { planPeriod, setPlanPeriod, selectedPlan, setSelectedPlan }: any =
     useContext(SomeContext);
-
   const handelClickOns = (index: number | any) => {
     let pos: string = index.toString();
-
     setSelectedPlan(pos);
   };
   return (
