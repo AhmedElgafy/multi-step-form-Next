@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import useGlobalHook from "../hooks/globalHook";
+import { useContext } from "react";
 import { SomeContext } from "../page";
 type NavType = {
   selectedBtn: number;

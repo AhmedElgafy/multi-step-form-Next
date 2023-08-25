@@ -3,7 +3,7 @@ import AddOns from "./addOns";
 import FinishingUp from "./finishingUp";
 import ThankYou from "./thankYou";
 import PersonalInfo from "./personal_info";
-import { MutableRefObject } from "react";
+
 interface RouteType {
   patternState: { name: boolean; email: boolean; phoneNum: boolean };
   setPatternState(value: {}): void;

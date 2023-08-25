@@ -1,6 +1,5 @@
 "use clint";
 import { useContext, useEffect, useState } from "react";
-import useGlobalHook from "../hooks/globalHook";
 import { addOns } from "../compsData/compsData";
 import { SomeContext } from "../page";
 

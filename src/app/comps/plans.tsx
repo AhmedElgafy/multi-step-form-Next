@@ -1,6 +1,5 @@
 "use client";
 
-import useGlobalHook from "../hooks/globalHook";
 import { plans } from "../compsData/compsData";
 import { SomeContext } from "../page";
 import { useContext } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import { useState, createContext } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export default function useGlobalHook() {
   const [planPeriod, setPlanPeriod] = useState("m");
@@ -40,3 +40,22 @@ export default function useGlobalHook() {
     setSelectedPlan,
   };
 }
+type Pattern = {
+  name: boolean;
+  email: boolean;
+  phoneNum: boolean;
+  isAllTrue(): boolean;
+};
+export type UseGlobalHook = {
+  name: string;
+  upDateName: Dispatch<SetStateAction<string>>;
+  selectedBtn: number;
+  isPattern: Pattern;
+  setSelectedBtn: Dispatch<SetStateAction<number>>;
+  selected: any;
+  setSelected: any;
+  planPeriod: string;
+  setPlanPeriod: Dispatch<SetStateAction<string>>;
+  selectedPlan: string;
+  setSelectedPlan: Dispatch<SetStateAction<string>>;
+};

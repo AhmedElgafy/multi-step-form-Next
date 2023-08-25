@@ -1,9 +1,6 @@
 "use clint";
 
-import { useContext } from "react";
-import { SomeContext } from "../page";
 import useResultData from "../compsData/resultData";
-import useGlobalHook from "../hooks/globalHook";
 type PropsType = {
   selectedBtn: number;
   setSelectedBtn(e: number): void;
@@ -50,14 +47,6 @@ const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
               </p>
             </div>
           ))}
-        {/* <div className="flex items-center justify-between">
-          <p className="text-Cool-gray">online service</p>
-          <p className="text-Marine-blue">+$1/mo</p>
-        </div>
-        <div className="flex items-center justify-between">
-          <h1 className="text-Cool-gray">Larger storage</h1>
-          <p className="text-Marine-blue">+$2/mo</p>
-        </div> */}
       </div>
       <div className="flex items-center justify-between">
         <h1 className="text-Cool-gray">total (per month)</h1>

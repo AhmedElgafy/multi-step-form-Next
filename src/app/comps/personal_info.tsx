@@ -1,18 +1,12 @@
 "use client";
-import {
-  ChangeEvent,
-  HtmlHTMLAttributes,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { personalInfo } from "../compsData/compsData";
 import { SomeContext } from "../page";
+import { UseGlobalHook } from "../hooks/globalHook";
 const data = personalInfo;
 
 export default function PersonalInfo({ patternState }: any) {
-  const { isPattern, name, upDateName } = useContext(SomeContext);
+  const { isPattern, name } = useContext<UseGlobalHook>(SomeContext);
   const [nameStatus, setName] = useState<string>(name);
   // console.log(name);
   const checkName = (e: ChangeEvent<HTMLInputElement>) => {
