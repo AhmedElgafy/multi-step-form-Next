@@ -16,7 +16,7 @@ export default function Plans() {
     <>
       <h1 className="title">{data.title}</h1>
       <p className=" disc">{data.disc}</p>
-      <div className="flex flex-col gap-3 md:flex-row md:justify-between">
+      <div className="flex flex-col gap-3 md:flex-row md:justify-center md:w-100  md:items-center">
         {data.option.map((ele) => (
           <div key={crypto.randomUUID()}>
             <div
@@ -24,7 +24,7 @@ export default function Plans() {
                 selectedPlan == ele[4]
                   ? "border-Purplish-blue bg-Light-blue bg-opacity-30"
                   : "border-Cool-gray"
-              } flex rounded-lg md:flex-col md:w-[30%]  gap-4 p-3 align-top border-Cool-gray`}
+              } flex rounded-lg md:flex-col md:w-32 md:h-[100%]  gap-4 p-3 align-top border-Cool-gray`}
               onClick={(e) => handelClickOns(ele[4])}
             >
               <img
