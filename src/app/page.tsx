@@ -1,17 +1,24 @@
 "use client";
 import Navigation from "./comps/Navigation";
-import { useState, createContext, SetStateAction, Dispatch } from "react";
+import {
+  useState,
+  createContext,
+  SetStateAction,
+  Dispatch,
+  Context,
+} from "react";
 import Routes from "./comps/Routs";
 import Circles from "./comps/Circles";
 import useGlobalHook, { UseGlobalHook } from "./hooks/globalHook";
 import { stepsDate } from "./compsData/compsData";
+import { SomeContext } from "./hooks/context";
 
-type Pattern = {
-  name: boolean;
-  email: boolean;
-  phoneNum: boolean;
-  isAllTrue(): boolean;
-};
+// type Pattern = {
+//   name: boolean;
+//   email: boolean;
+//   phoneNum: boolean;
+//   isAllTrue(): boolean;
+// };
 
 // interface SomeContextType {
 //   name?: string;
@@ -29,7 +36,7 @@ type Pattern = {
 // type SomeContextType = {
 //   isPattern: any;
 // };
-export const SomeContext = createContext<UseGlobalHook | any | null>(null);
+
 export default function Home() {
   const [selectedBtn, setSelectedBtn] = useState(1);
   const [patternState, setPatternState] = useState({

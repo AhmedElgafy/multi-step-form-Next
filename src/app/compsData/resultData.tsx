@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { personalInfo, plans, addOns } from "./compsData";
-import { SomeContext } from "../page";
+import { SomeContext } from "../hooks/context";
 export default function useResultData() {
   const { selected, planPeriod, selectedPlan } = useContext(SomeContext);
   plans.option[0][0];
@@ -10,11 +10,13 @@ export default function useResultData() {
       selectedOns.push([addOns.ons[i][0], addOns.ons[i][2], addOns.ons[i][3]]);
     }
   }
-  const yourPlan = [
-    plans.option[selectedPlan - 1][0],
-    plans.option[selectedPlan - 1][1],
-    plans.option[selectedPlan - 1][2],
-  ];
+  const yourPlan = selectedPlan
+    ? [
+        plans.option[Number(selectedPlan) - 1][0],
+        plans.option[Number(selectedPlan) - 1][1],
+        plans.option[Number(selectedPlan) - 1][2],
+      ]
+    : null;
   var totalMon = 0;
   var totalYear = 0;
   // console.log(selectedOns);

@@ -19,7 +19,7 @@ const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
         <div className="flex items-center justify-between bg-Magnolia">
           <div>
             <h1 className="font-bold text-Marine-blue">
-              {yourPlan[0]} (Monthly)
+              {yourPlan && yourPlan[0]} (Monthly)
             </h1>
             <p
               onClick={(e) => {
@@ -32,7 +32,9 @@ const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
             </p>
           </div>
           <p className="font-bold text-Marine-blue">
-            {planPeriod == "m" ? yourPlan[1] : yourPlan[2]}
+            {yourPlan && planPeriod == "m"
+              ? yourPlan[1]
+              : yourPlan && yourPlan[2]}
           </p>
         </div>
         {selectedOns &&
@@ -52,9 +54,9 @@ const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
         <h1 className="text-Cool-gray">total (per month)</h1>
         <p className=" text-Purplish-blue font-bold">
           +$
-          {planPeriod == "m"
+          {yourPlan && planPeriod == "m"
             ? totalMon + Number(yourPlan[1].match(/\d+/g))
-            : totalYear + Number(yourPlan[2].match(/\d+/g))}
+            : totalYear + Number(yourPlan && yourPlan[2].match(/\d+/g))}
           /mo
         </p>
       </div>

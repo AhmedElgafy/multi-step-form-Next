@@ -1,7 +1,7 @@
 "use client";
 
 import { plans } from "../compsData/compsData";
-import { SomeContext } from "../page";
+import { SomeContext } from "../hooks/context";
 import { useContext } from "react";
 
 const data = plans;

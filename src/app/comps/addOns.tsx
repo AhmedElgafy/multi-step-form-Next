@@ -1,7 +1,7 @@
 "use clint";
 import { useContext, useEffect, useState } from "react";
 import { addOns } from "../compsData/compsData";
-import { SomeContext } from "../page";
+import { SomeContext } from "../hooks/context";
 
 const data = addOns;
 const AddOns = () => {

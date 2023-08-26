@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SomeContext } from "../page";
+import { SomeContext } from "../hooks/context";
 type NavType = {
   selectedBtn: number;
   setSelectedBtn(num: any): void;
@@ -32,7 +32,7 @@ const Navigation = ({
         ) : null}
         <h1
           onClick={() => {
-            if (!isPattern.isAllTrue() && selectedBtn == 1) {
+            if (isPattern && !isPattern.isAllTrue() && selectedBtn == 1) {
               setPatternState(isPattern);
               return;
             }
