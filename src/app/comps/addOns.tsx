@@ -20,9 +20,9 @@ const AddOns = () => {
       <h1 className="title">{data.title}</h1>
       <p className="disc">{data.disc}</p>
       {data.ons.map((ele) => (
-        <>
+        <div key={crypto.randomUUID()}>
           <div
-            key={crypto.randomUUID()}
+            // key={crypto.randomUUID()}
             onClick={(e) => handelClickOns(ele[4])}
             className={`border-2 ${
               selected[ele[4]]
@@ -53,7 +53,7 @@ const AddOns = () => {
               {planPeriod == "m" ? ele[2] : ele[3]}
             </p>
           </div>
-        </>
+        </div>
       ))}
     </>
   );

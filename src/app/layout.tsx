@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -12,8 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
-    </html>
+    <StrictMode>
+      <html lang="en">
+        <title>multi form</title>
+        <link rel="icon" href="../icon.png" type="image/x-icon" sizes="32x32" />
+        <body suppressHydrationWarning={true}>{children}</body>
+      </html>
+    </StrictMode>
   );
 }

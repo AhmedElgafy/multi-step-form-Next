@@ -14,15 +14,12 @@ export default function Plans() {
   };
   return (
     <>
-      <h1 key={crypto.randomUUID()} className="title">
-        {data.title}
-      </h1>
+      <h1 className="title">{data.title}</h1>
       <p className=" disc">{data.disc}</p>
       <div className="flex flex-col gap-3 md:flex-row md:justify-between">
         {data.option.map((ele) => (
-          <>
+          <div key={crypto.randomUUID()}>
             <div
-              key={crypto.randomUUID()}
               className={`border-2 cursor-pointer ${
                 selectedPlan == ele[4]
                   ? "border-Purplish-blue bg-Light-blue bg-opacity-30"
@@ -50,10 +47,10 @@ export default function Plans() {
                 ) : null}
               </div>
             </div>
-          </>
+          </div>
         ))}
       </div>
-      <div className="flex gap-6 my-5 justify-center">
+      <div className="flex gap-6 my-5 justify-center" key={crypto.randomUUID()}>
         <h1
           onClick={() => setPlanPeriod("m")}
           className={`${

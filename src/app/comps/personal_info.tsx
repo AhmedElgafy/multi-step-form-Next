@@ -44,7 +44,7 @@ export default function PersonalInfo({ patternState }: any) {
           value={nameStatus}
           onChange={(e) => checkName(e)}
           name="Name"
-          id=""
+          id="Name"
           placeholder={data.nameInput}
         />
         {!patternState.name && (
@@ -61,7 +61,7 @@ export default function PersonalInfo({ patternState }: any) {
           name="email"
           onChange={(e) => checkEmail(e)}
           // value={email}
-          id=""
+          id="EmailAddress"
           placeholder={data.emailAddress}
         />
         {!patternState.email && (
@@ -75,9 +75,10 @@ export default function PersonalInfo({ patternState }: any) {
         <input
           type="text"
           onChange={(e) => checkPhoneNum(e)}
-          name="Name"
+          name="PhoneNumber"
           placeholder={data.phoneInput}
           // value={phoneNum}
+          id="PhoneNumber"
         />
         {!patternState.phoneNum && (
           <p className="text-Strawberry-red ">Phone number is required</p>

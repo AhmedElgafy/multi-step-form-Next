@@ -25,7 +25,7 @@ export default function useGlobalHook() {
     },
   };
   const [selectedBtn, setSelectedBtn] = useState(1);
-  console.log("hi");
+  // console.log("hi");
   const [name, upDateName] = useState<string>("");
   return {
     name,

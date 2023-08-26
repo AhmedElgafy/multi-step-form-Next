@@ -4,7 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  background: url("/bg-sidebar-mobile.svg") no-repeat fixed;
+  background: rgba(238, 245, 255, 255) url("/bg-sidebar-mobile.svg") no-repeat
+    fixed;
   background-size: 100%;
 }
 input[type="text"] {
@@ -24,6 +25,7 @@ input[type="text"] {
 }
 @media (min-width: 768px) {
   body {
-    background: none;
+    /* background: none; */
+    background: rgba(238, 245, 255, 255);
   }
 }

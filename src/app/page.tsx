@@ -1,41 +1,11 @@
 "use client";
 import Navigation from "./comps/Navigation";
-import {
-  useState,
-  createContext,
-  SetStateAction,
-  Dispatch,
-  Context,
-} from "react";
+import { useState } from "react";
 import Routes from "./comps/Routs";
 import Circles from "./comps/Circles";
 import useGlobalHook, { UseGlobalHook } from "./hooks/globalHook";
 import { stepsDate } from "./compsData/compsData";
 import { SomeContext } from "./hooks/context";
-
-// type Pattern = {
-//   name: boolean;
-//   email: boolean;
-//   phoneNum: boolean;
-//   isAllTrue(): boolean;
-// };
-
-// interface SomeContextType {
-//   name?: string;
-//   upDateName?: Dispatch<SetStateAction<string>>;
-//   selectedBtn?: number;
-//   isPattern?: Pattern;
-//   setSelectedBtn: Dispatch<SetStateAction<number>>;
-//   selected?: any;
-//   setSelected?: any;
-//   planPeriod?: string;
-//   setPlanPeriod?: Dispatch<SetStateAction<string>>;
-//   selectedPlan?: string;
-//   setSelectedPlan?: Dispatch<SetStateAction<string>>;
-// }
-// type SomeContextType = {
-//   isPattern: any;
-// };
 
 export default function Home() {
   const [selectedBtn, setSelectedBtn] = useState(1);
@@ -59,9 +29,9 @@ export default function Home() {
            text-White md:my-0 items-center justify-center"
           >
             {[1, 2, 3, 4].map((ele) => (
-              <div className="flex gap-3">
+              <div key={crypto.randomUUID()} className="flex gap-3">
                 <Circles
-                  key={crypto.randomUUID()}
+                  // key={crypto.randomUUID()}
                   selectedBtn={selectedBtn}
                   setSelectedBtn={setSelectedBtn}
                   num={ele}

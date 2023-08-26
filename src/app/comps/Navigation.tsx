@@ -13,7 +13,7 @@ const Navigation = ({
   setPatternState,
 }: NavType) => {
   const { isPattern } = useContext(SomeContext);
-  console.log(patternState);
+  // console.log(patternState);
 
   return (
     <>
