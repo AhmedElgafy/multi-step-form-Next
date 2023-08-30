@@ -1,16 +1,19 @@
 "use client";
-
 import { plans } from "../compsData/compsData";
-import { SomeContext } from "../hooks/context";
-import { useContext } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../about/reduxStore/store";
+import { setPlanPeriod } from "../about/reduxStore/slices/planPeriod";
+import { setSelectedPlan } from "../about/reduxStore/slices/selectedPlan";
 const data = plans;
 export default function Plans() {
-  const { planPeriod, setPlanPeriod, selectedPlan, setSelectedPlan }: any =
-    useContext(SomeContext);
+  const planPeriod = useSelector((state: RootState) => state.planPeriod.value);
+  const selectedPlan = useSelector(
+    (state: RootState) => state.selectedPlan.value
+  );
+  const dispatch = useDispatch();
   const handelClickOns = (index: number | any) => {
     let pos: string = index.toString();
-    setSelectedPlan(pos);
+    dispatch(setSelectedPlan(pos));
   };
   return (
     <>
@@ -52,7 +55,7 @@ export default function Plans() {
       </div>
       <div className="flex gap-6 my-5 justify-center" key={crypto.randomUUID()}>
         <h1
-          onClick={() => setPlanPeriod("m")}
+          onClick={() => dispatch(setPlanPeriod("m"))}
           className={`${
             planPeriod == "m" ? "text-Marine-blue" : "text-Cool-gray"
           } cursor-pointer font-bold text-lg`}
@@ -61,7 +64,9 @@ export default function Plans() {
         </h1>
         <div
           onClick={() =>
-            planPeriod == "m" ? setPlanPeriod("y") : setPlanPeriod("m")
+            planPeriod == "m"
+              ? dispatch(setPlanPeriod("y"))
+              : dispatch(setPlanPeriod("m"))
           }
           className={`bg-Marine-blue h-6 w-12 rounded-[10px] cursor-pointer px-1  flex items-center ${
             planPeriod == "m" ? null : "justify-end"
@@ -70,7 +75,7 @@ export default function Plans() {
           <div className="bg-White w-4 h-4 rounded-[100%]  "></div>
         </div>
         <h1
-          onClick={() => setPlanPeriod("y")}
+          onClick={() => dispatch(setPlanPeriod("y"))}
           className={`${
             planPeriod == "m" ? "text-Cool-gray" : "text-Marine-blue"
           } cursor-pointer font-bold text-lg`}

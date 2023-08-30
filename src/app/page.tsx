@@ -6,9 +6,10 @@ import Circles from "./comps/Circles";
 import useGlobalHook, { UseGlobalHook } from "./hooks/globalHook";
 import { stepsDate } from "./compsData/compsData";
 import { SomeContext } from "./hooks/context";
-
+import { RootState, store } from "./about/reduxStore/store";
+import { useSelector, useDispatch } from "react-redux";
 export default function Home() {
-  const [selectedBtn, setSelectedBtn] = useState(1);
+  const selectedBtn = useSelector((state: RootState) => state.selector.value);
   const [patternState, setPatternState] = useState({
     name: true,
     email: true,
@@ -30,12 +31,7 @@ export default function Home() {
           >
             {[1, 2, 3, 4].map((ele) => (
               <div key={crypto.randomUUID()} className="flex gap-3">
-                <Circles
-                  // key={crypto.randomUUID()}
-                  selectedBtn={selectedBtn}
-                  setSelectedBtn={setSelectedBtn}
-                  num={ele}
-                />
+                <Circles num={ele} />
                 <div className="hidden md:block">
                   <h1 className="text-Cool-gray text-sm">
                     {stepsDate[ele - 1][0]}
@@ -53,16 +49,12 @@ export default function Home() {
               <Routes
                 patternState={patternState}
                 setPatternState={setPatternState}
-                selectedBtn={selectedBtn}
-                setSelectedBtn={setSelectedBtn}
               />
             }
             {selectedBtn != 5 && (
               <Navigation
                 patternState={patternState}
                 setPatternState={setPatternState}
-                selectedBtn={selectedBtn}
-                setSelectedBtn={setSelectedBtn}
               />
             )}
           </div>

@@ -1,19 +1,17 @@
 import { useContext } from "react";
 import { SomeContext } from "../hooks/context";
+import { useDispatch, useSelector } from "react-redux";
+import useResultData from "../compsData/resultData";
+import { RootState } from "../about/reduxStore/store";
+import { setSelectedBtn } from "../about/reduxStore/slices/selectedBtn";
 type NavType = {
-  selectedBtn: number;
-  setSelectedBtn(num: any): void;
   patternState: { name: boolean; email: boolean; phoneNum: boolean };
   setPatternState(value: {}): void;
 };
-const Navigation = ({
-  selectedBtn,
-  setSelectedBtn,
-  patternState,
-  setPatternState,
-}: NavType) => {
+const Navigation = ({ setPatternState }: NavType) => {
   const { isPattern } = useContext(SomeContext);
-  // console.log(patternState);
+  const selectedBtn = useSelector((state: RootState) => state.selector.value);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -24,7 +22,8 @@ const Navigation = ({
       >
         {selectedBtn != 1 ? (
           <h1
-            onClick={() => setSelectedBtn((e: number) => (e = (e - 1) % 5))}
+            // onClick={() => setSelectedBtn((e: number) => (e = (e - 1) % 5))}
+            onClick={() => dispatch(setSelectedBtn((selectedBtn - 1) % 5))}
             className="text-Cool-gray my-auto cursor-pointer font-bold"
           >
             Go Back
@@ -36,11 +35,14 @@ const Navigation = ({
               setPatternState(isPattern);
               return;
             }
-            setSelectedBtn((e: number) => {
-              e = (e + 1) % 6;
-              if (e == 0) e = 1;
-              return e;
-            });
+            // setSelectedBtn((e: number) => {
+            //   e = (e + 1) % 6;
+            //   if (e == 0) e = 1;
+            // return e;
+
+            // });
+            dispatch(setSelectedBtn((selectedBtn + 1) % 6));
+            selectedBtn == 0 && dispatch(setSelectedBtn(1));
           }}
           className="p-3 bg-Marine-blue text-White cursor-pointer font-bold rounded-lg"
         >
