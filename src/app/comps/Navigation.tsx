@@ -1,24 +1,26 @@
 import { useContext } from "react";
 import { SomeContext } from "../hooks/context";
 import { useDispatch, useSelector } from "react-redux";
-import useResultData from "../compsData/resultData";
+import patternState, {
+  setPatternState,
+} from "../about/reduxStore/slices/patternState";
 import { RootState } from "../about/reduxStore/store";
 import { setSelectedBtn } from "../about/reduxStore/slices/selectedBtn";
-type NavType = {
-  patternState: { name: boolean; email: boolean; phoneNum: boolean };
-  setPatternState(value: {}): void;
-};
-const Navigation = ({ setPatternState }: NavType) => {
-  const { isPattern } = useContext(SomeContext);
+
+const Navigation = () => {
+  // const { isPattern } = useContext(SomeContext);
+
   const selectedBtn = useSelector((state: RootState) => state.selector.value);
+  const patternState = useSelector((state: RootState) => state.patternState);
   const dispatch = useDispatch();
 
   return (
     <>
       <div
-        className={`fixed left-0 bottom-0 md:static md:px-0 md:bg-White md:w-auto  bg-Light-gray w-full flex ${
-          selectedBtn != 1 ? "justify-between" : "justify-end"
-        } py-4 content-center px-10`}
+        className={`fixed left-0 bottom-0 md:static md:px-0 md:bg-White md:w-auto
+          bg-Light-gray w-full flex ${
+            selectedBtn != 1 ? "justify-between" : "justify-end"
+          } py-4 content-center px-10`}
       >
         {selectedBtn != 1 ? (
           <h1
@@ -31,16 +33,10 @@ const Navigation = ({ setPatternState }: NavType) => {
         ) : null}
         <h1
           onClick={() => {
-            if (isPattern && !isPattern.isAllTrue() && selectedBtn == 1) {
-              setPatternState(isPattern);
+            if (!patternState.isAllTrue()) {
+              console.log(patternState);
               return;
             }
-            // setSelectedBtn((e: number) => {
-            //   e = (e + 1) % 6;
-            //   if (e == 0) e = 1;
-            // return e;
-
-            // });
             dispatch(setSelectedBtn((selectedBtn + 1) % 6));
             selectedBtn == 0 && dispatch(setSelectedBtn(1));
           }}

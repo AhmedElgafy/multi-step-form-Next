@@ -2,17 +2,24 @@
 import { useContext, useEffect, useState } from "react";
 import { addOns } from "../compsData/compsData";
 import { SomeContext } from "../hooks/context";
+import { setSelected } from "../about/reduxStore/slices/select";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../about/reduxStore/store";
 
 const data = addOns;
 const AddOns = () => {
-  const { selected, setSelected, planPeriod } = useContext(SomeContext);
+  // const { selected, setSelected} = useContext(SomeContext);
+  const selected = useSelector((state: RootState) => state.selected);
+  const planPeriod = useSelector((state: RootState) => state.planPeriod.value);
+  const dispatch = useDispatch();
 
-  const handelClickOns = (index: number | any) => {
-    selected[index.toString()]
-      ? (selected[index.toString()] = false)
-      : (selected[index.toString()] = true);
-    const newOne = { ...selected };
-    setSelected(newOne);
+  const handelClickOns = (index: string) => {
+    const selectedTem = { ...selected };
+    selectedTem[index]
+      ? (selectedTem[index] = false)
+      : (selectedTem[index] = true);
+
+    dispatch(setSelected(selectedTem));
   };
 
   return (

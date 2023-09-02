@@ -1,20 +1,14 @@
 "use client";
 import Navigation from "./comps/Navigation";
-import { useState } from "react";
 import Routes from "./comps/Routs";
 import Circles from "./comps/Circles";
 import useGlobalHook, { UseGlobalHook } from "./hooks/globalHook";
 import { stepsDate } from "./compsData/compsData";
 import { SomeContext } from "./hooks/context";
-import { RootState, store } from "./about/reduxStore/store";
-import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "./about/reduxStore/store";
+import { useSelector } from "react-redux";
 export default function Home() {
   const selectedBtn = useSelector((state: RootState) => state.selector.value);
-  const [patternState, setPatternState] = useState({
-    name: true,
-    email: true,
-    phoneNum: true,
-  });
   return (
     <>
       <main
@@ -45,18 +39,8 @@ export default function Home() {
             className="flex flex-col md:shadow-none md:w-[70%] shadow-lg
            bg-White w-96 py-12 p-6  gap-3 rounded-lg"
           >
-            {
-              <Routes
-                patternState={patternState}
-                setPatternState={setPatternState}
-              />
-            }
-            {selectedBtn != 5 && (
-              <Navigation
-                patternState={patternState}
-                setPatternState={setPatternState}
-              />
-            )}
+            {<Routes />}
+            {selectedBtn != 5 && <Navigation />}
           </div>
         </SomeContext.Provider>
       </main>

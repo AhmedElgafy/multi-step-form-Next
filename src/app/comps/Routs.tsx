@@ -11,7 +11,7 @@ interface RouteType {
   setPatternState(value: {}): void;
 }
 
-const Routes = ({ patternState, setPatternState }: RouteType) => {
+const Routes = () => {
   const selectedBtn = useSelector((state: RootState) => state.selector.value);
 
   switch (selectedBtn) {
@@ -27,8 +27,8 @@ const Routes = ({ patternState, setPatternState }: RouteType) => {
     default:
       return (
         <PersonalInfo
-          patternState={patternState}
-          setPatternState={setPatternState}
+        // patternState={patternState}
+        // setPatternState={setPatternState}
         />
       );
   }
