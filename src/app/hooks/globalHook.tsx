@@ -1,9 +1,10 @@
 "use client";
-import { type } from "os";
+// import { type } from "os";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export default function useGlobalHook() {
   const [planPeriod, setPlanPeriod] = useState("m");
+
   const [selectedPlan, setSelectedPlan] = useState("1");
   const [selected, setSelected]: any = useState({
     1: false,

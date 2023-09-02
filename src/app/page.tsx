@@ -1,19 +1,14 @@
 "use client";
 import Navigation from "./comps/Navigation";
-import { useState } from "react";
 import Routes from "./comps/Routs";
 import Circles from "./comps/Circles";
 import useGlobalHook, { UseGlobalHook } from "./hooks/globalHook";
 import { stepsDate } from "./compsData/compsData";
 import { SomeContext } from "./hooks/context";
-
+import { RootState } from "./about/reduxStore/store";
+import { useSelector } from "react-redux";
 export default function Home() {
-  const [selectedBtn, setSelectedBtn] = useState(1);
-  const [patternState, setPatternState] = useState({
-    name: true,
-    email: true,
-    phoneNum: true,
-  });
+  const selectedBtn = useSelector((state: RootState) => state.selector.value);
   return (
     <>
       <main
@@ -30,12 +25,7 @@ export default function Home() {
           >
             {[1, 2, 3, 4].map((ele) => (
               <div key={crypto.randomUUID()} className="flex gap-3">
-                <Circles
-                  // key={crypto.randomUUID()}
-                  selectedBtn={selectedBtn}
-                  setSelectedBtn={setSelectedBtn}
-                  num={ele}
-                />
+                <Circles num={ele} />
                 <div className="hidden md:block">
                   <h1 className="text-Cool-gray text-sm">
                     {stepsDate[ele - 1][0]}
@@ -49,22 +39,8 @@ export default function Home() {
             className="flex flex-col md:shadow-none md:w-[70%] shadow-lg
            bg-White w-96 py-12 p-6  gap-3 rounded-lg"
           >
-            {
-              <Routes
-                patternState={patternState}
-                setPatternState={setPatternState}
-                selectedBtn={selectedBtn}
-                setSelectedBtn={setSelectedBtn}
-              />
-            }
-            {selectedBtn != 5 && (
-              <Navigation
-                patternState={patternState}
-                setPatternState={setPatternState}
-                selectedBtn={selectedBtn}
-                setSelectedBtn={setSelectedBtn}
-              />
-            )}
+            {<Routes />}
+            {selectedBtn != 5 && <Navigation />}
           </div>
         </SomeContext.Provider>
       </main>

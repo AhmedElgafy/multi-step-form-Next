@@ -3,32 +3,60 @@ import { ChangeEvent, useContext, useState } from "react";
 import { personalInfo } from "../compsData/compsData";
 import { SomeContext } from "../hooks/context";
 import { UseGlobalHook } from "../hooks/globalHook";
+import { setPersonalInfoState } from "../about/reduxStore/slices/personalInfoState";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../about/reduxStore/store";
+import { setPatternState } from "../about/reduxStore/slices/patternState";
 const data = personalInfo;
 
-export default function PersonalInfo({ patternState }: any) {
-  const { isPattern, name } = useContext<UseGlobalHook>(SomeContext);
-  const [nameStatus, setName] = useState<string | undefined>(name);
-  // console.log(name);
+export default function PersonalInfo() {
+  // const { isPattern, name } = useContext<UseGlobalHook>(SomeContext);
+  const patternState = useSelector((state: RootState) => state.patternState);
+  const personalInfoState = useSelector(
+    (state: RootState) => state.personalInfoState
+  );
+  console.log(patternState);
+  const dispatch = useDispatch();
+
   const checkName = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /^[a-z ,.'-]+$/i;
-    // upDateName(e.target.value);
-    setName(e.target.value);
-    // console.log(nameStatus);
-    isPattern == undefined
-      ? null
-      : (isPattern.name = pattern.test(e.target.value));
+    const dispatchPersonalInfo = { ...personalInfoState, name: e.target.value };
+    dispatch(setPersonalInfoState(dispatchPersonalInfo));
+
+    const dispatchPattern = {
+      ...patternState,
+      name: pattern.test(e.target.value),
+    };
+    dispatch(setPatternState(dispatchPattern));
+    console.log(patternState);
   };
+
   const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    isPattern == undefined
-      ? null
-      : (isPattern.email = pattern.test(e.target.value));
+    const dispatchPersonalInfo = {
+      ...personalInfoState,
+      email: e.target.value,
+    };
+    dispatch(setPersonalInfoState(dispatchPersonalInfo));
+    const dispatchPattern = {
+      ...patternState,
+      email: pattern.test(e.target.value),
+    };
+    dispatch(setPatternState(dispatchPattern));
   };
+
   const checkPhoneNum = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-    isPattern == undefined
-      ? null
-      : (isPattern.phoneNum = pattern.test(e.target.value));
+    const dispatchPersonalInfo = {
+      ...personalInfoState,
+      phoneNum: e.target.value,
+    };
+    dispatch(setPersonalInfoState(dispatchPersonalInfo));
+    const dispatchPattern = {
+      ...patternState,
+      phoneNum: pattern.test(e.target.value),
+    };
+    dispatch(setPatternState(dispatchPattern));
   };
 
   return (
@@ -41,9 +69,9 @@ export default function PersonalInfo({ patternState }: any) {
         </label>
         <input
           type="text"
-          value={nameStatus}
           onChange={(e) => checkName(e)}
           name="Name"
+          value={personalInfoState.name}
           id="Name"
           placeholder={data.nameInput}
         />
@@ -58,9 +86,9 @@ export default function PersonalInfo({ patternState }: any) {
         <input
           pattern=""
           type="text"
+          value={personalInfoState.email}
           name="email"
           onChange={(e) => checkEmail(e)}
-          // value={email}
           id="EmailAddress"
           placeholder={data.emailAddress}
         />
@@ -76,8 +104,8 @@ export default function PersonalInfo({ patternState }: any) {
           type="text"
           onChange={(e) => checkPhoneNum(e)}
           name="PhoneNumber"
+          value={personalInfoState.phoneNum}
           placeholder={data.phoneInput}
-          // value={phoneNum}
           id="PhoneNumber"
         />
         {!patternState.phoneNum && (

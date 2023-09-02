@@ -1,13 +1,16 @@
 "use clint";
 
+import { useDispatch, useSelector } from "react-redux";
 import useResultData from "../compsData/resultData";
-type PropsType = {
-  selectedBtn: number;
-  setSelectedBtn(e: number): void;
-};
-const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
-  const { selectedOns, planPeriod, yourPlan, totalMon, totalYear } =
-    useResultData();
+import { RootState } from "../about/reduxStore/store";
+import { setSelectedBtn } from "../about/reduxStore/slices/selectedBtn";
+
+const FinishingUp = () => {
+  const { selectedOns, yourPlan, totalMon, totalYear } = useResultData();
+
+  const planPeriod = useSelector((state: RootState) => state.planPeriod.value);
+  const selectedBtn = useSelector((state: RootState) => state.selector.value);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -23,7 +26,7 @@ const FinishingUp = ({ selectedBtn, setSelectedBtn }: PropsType) => {
             </h1>
             <p
               onClick={(e) => {
-                setSelectedBtn(2);
+                dispatch(setSelectedBtn(2));
                 console.log("from finishing: " + selectedBtn);
               }}
               className="underline cursor-pointer text-Cool-gray"

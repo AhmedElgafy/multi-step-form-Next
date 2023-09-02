@@ -1,14 +1,18 @@
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../about/reduxStore/store";
+import { setSelectedBtn } from "../about/reduxStore/slices/selectedBtn";
+
 interface CirclesType {
   num: number;
-  selectedBtn: number;
-  setSelectedBtn(num: number): void;
 }
-const Circles = ({ num, selectedBtn, setSelectedBtn }: CirclesType) => {
-  // console.log(keys);
+const Circles = ({ num }: CirclesType) => {
+  const dispatch = useDispatch();
+  const selectedBtn = useSelector((state: RootState) => state.selector.value);
+
   return (
     <>
       <p
-        onClick={() => setSelectedBtn(num)}
+        onClick={() => dispatch(setSelectedBtn(num))}
         className={`circles ${
           selectedBtn == num
             ? "bg-Light-blue text-Marine-blue border-Light-gray"

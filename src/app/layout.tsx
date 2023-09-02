@@ -1,6 +1,9 @@
+"use client";
 import { StrictMode } from "react";
 import "./globals.css";
 import type { Metadata } from "next";
+import { store } from "./about/reduxStore/store";
+import { Provider } from "react-redux";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +18,16 @@ export default function RootLayout({
   return (
     <StrictMode>
       <html lang="en">
-        <title>multi form</title>
-        <link rel="icon" href="../icon.png" type="image/x-icon" sizes="32x32" />
-        <body suppressHydrationWarning={true}>{children}</body>
+        <Provider store={store}>
+          <title>multi form</title>
+          <link
+            rel="icon"
+            href="../icon.png"
+            type="image/x-icon"
+            sizes="32x32"
+          />
+          <body suppressHydrationWarning={true}>{children}</body>
+        </Provider>
       </html>
     </StrictMode>
   );
