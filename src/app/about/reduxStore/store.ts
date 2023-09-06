@@ -15,6 +15,7 @@ export const store = configureStore({
     personalInfoState: personalInfoState,
     selected: selectedSlice,
   },
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

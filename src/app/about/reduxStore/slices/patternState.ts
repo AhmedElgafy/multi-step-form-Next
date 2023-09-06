@@ -11,7 +11,7 @@ const initialState: SelectedBtn = {
   name: true,
   email: true,
   phoneNum: true,
-  isAllTrue() {
+  isAllTrue(): boolean {
     return this.name && this.email && this.phoneNum;
   },
 };

@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useResultData from "../compsData/resultData";
 import { RootState } from "../about/reduxStore/store";
 import { setSelectedBtn } from "../about/reduxStore/slices/selectedBtn";
-
+import { addOns } from "../compsData/compsData";
 const FinishingUp = () => {
   const { selectedOns, yourPlan, totalMon, totalYear } = useResultData();
 
   const planPeriod = useSelector((state: RootState) => state.planPeriod.value);
   const selectedBtn = useSelector((state: RootState) => state.selector.value);
+  console.log(selectedOns);
   const dispatch = useDispatch();
 
   return (

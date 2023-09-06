@@ -43,7 +43,8 @@ const AddOns = () => {
                   selected[ele[4]]
                     ? "bg-Marine-blue"
                     : "border-Cool-gray bg-White"
-                } bg-Marine-blue m-2 w-6 h-6 flex items-center justify-center rounded-lg`}
+                } bg-Marine-blue m-2 w-6 h-6 flex items-center 
+                justify-center rounded-lg`}
               >
                 <img
                   className="block"

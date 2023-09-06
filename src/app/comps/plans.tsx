@@ -14,6 +14,7 @@ export default function Plans() {
   const handelClickOns = (index: number | any) => {
     let pos: string = index.toString();
     dispatch(setSelectedPlan(pos));
+    console.log(selectedPlan);
   };
   return (
     <>
@@ -27,7 +28,8 @@ export default function Plans() {
                 selectedPlan == ele[4]
                   ? "border-Purplish-blue bg-Light-blue bg-opacity-30"
                   : "border-Cool-gray"
-              } flex rounded-lg md:flex-col md:w-32 md:h-[100%]  gap-4 p-3 align-top border-Cool-gray`}
+              } flex rounded-lg md:flex-col md:w-32 md:h-[100%] 
+                gap-4 p-3 align-top border-Cool-gray`}
               onClick={(e) => handelClickOns(ele[4])}
             >
               <img
