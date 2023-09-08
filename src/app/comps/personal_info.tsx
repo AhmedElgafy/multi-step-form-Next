@@ -1,8 +1,6 @@
 "use client";
 import { ChangeEvent, useContext, useState } from "react";
 import { personalInfo } from "../compsData/compsData";
-import { SomeContext } from "../hooks/context";
-import { UseGlobalHook } from "../hooks/globalHook";
 import { setPersonalInfoState } from "../about/reduxStore/slices/personalInfoState";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../about/reduxStore/store";

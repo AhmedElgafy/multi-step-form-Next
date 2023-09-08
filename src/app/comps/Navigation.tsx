@@ -24,7 +24,6 @@ const Navigation = () => {
       >
         {selectedBtn != 1 ? (
           <h1
-            // onClick={() => setSelectedBtn((e: number) => (e = (e - 1) % 5))}
             onClick={() => dispatch(setSelectedBtn((selectedBtn - 1) % 5))}
             className="text-Cool-gray my-auto cursor-pointer font-bold"
           >
@@ -33,6 +32,7 @@ const Navigation = () => {
         ) : null}
         <h1
           onClick={() => {
+            console.log(patternState.isAllTrue());
             if (!patternState.isAllTrue()) {
               console.log(patternState);
               return;

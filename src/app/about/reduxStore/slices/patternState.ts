@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
+
 export interface SelectedBtn {
   name: boolean;
   email: boolean;
@@ -8,10 +8,10 @@ export interface SelectedBtn {
   isAllTrue(): boolean;
 }
 const initialState: SelectedBtn = {
-  name: true,
-  email: true,
-  phoneNum: true,
-  isAllTrue(): boolean {
+  name: false,
+  email: false,
+  phoneNum: false,
+  isAllTrue: function (): boolean {
     return this.name && this.email && this.phoneNum;
   },
 };
